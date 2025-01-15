@@ -36,8 +36,12 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ```mermaid
 sequenceDiagram
-    actor You
-    actor Website
+    actor Ashley
+    actor Jack
+    actor Taylor
+    Ashley->>Server: Ashley + groceries @4 on Tue
+    Server -->Taylor: Ashley + groceries @4 on Tue
+    Server -->Jack: Ashley + groceries @4 on Tue
     You->>Website: Replace this with your design
 ```
 
