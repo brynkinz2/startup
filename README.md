@@ -26,7 +26,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+College students hate doing things by themselves. Let be honest though, most people think errands would be more enjoyable if a friend joined them. The ChoreChum application will allow friends to share errands that they have to run and invite others to come along! It will give an option for if something is flexible as well, so that friends can ask for a time change if needed. If a friend chooses to join a certain errand, it will notify the poster so they can reach out with any details.
 
 ### Design
 
@@ -43,20 +43,24 @@ sequenceDiagram
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Secure login for users through HTTPS
+- Ability to "post" errands on the calendar for friends to see
+- Ability to add descriptions and flexibility to errands
+- Display of errands that friends have posted in a calendar view
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - Uses correct HTML structure for application. Three HTML pages. One for login, one for the calendar itself where people can add events, and one to see friends list and add new people. 
+- **CSS** - Application styling that is pleasing to the eye and easy to look at. Also adds color coordinating by friend.
+- **React** - Provides login, ability to add new events and friends,and use of React for routing and components.
+- **Service** - Backend service with endpoints for:
+    - login
+    - retrieving events from friends
+    - choosing to join on an errand
+- **DB/Login** - Stores users, events hosted, events joined, and friends list in database. Register and login users. Credentials securely stored in database. Can't post events unless authenticated.
+- **WebSocket** - As each user hosts an errand, those events are broadcasted to those in friends list.
 
 ## 🚀 AWS deliverable
 
