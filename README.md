@@ -42,7 +42,9 @@ sequenceDiagram
     Ashley->>Server: Ashley + groceries @4 on Tue
     Server -->Taylor: Ashley + groceries @4 on Tue
     Server -->Jack: Ashley + groceries @4 on Tue
-    You->>Website: Replace this with your design
+    Taylor->>Server: Taylor + Swig @3 on Wed
+    Server--> Jack: Taylor + Swig @3 on Wed
+    Server--> Ashley: Taylor + Swig @3 on Wed
 ```
 
 ### Key features
