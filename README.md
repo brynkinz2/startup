@@ -1,4 +1,4 @@
-# Your startup name here
+# ChoreChum
 
 [My Notes](notes.md)
 
