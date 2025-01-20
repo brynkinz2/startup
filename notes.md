@@ -22,7 +22,7 @@ Adding a record with the record name "*" is a wildcard, meaning that you can rea
 Command to remote shell (make sure key pair file is done as file path): ssh -i [key pair file] ubuntu@[yourdomainnamehere]  
 Enter Caddy: cd ~ , then vi Caddyfile  
 Change :80 and yourdomain to domain name  
-Press escape to stop editing
+Press escape to stop editing  
 To save and exit:   :wq  
 
 
