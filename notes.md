@@ -15,9 +15,16 @@
 Command to remote shell into the server:   ssh -i [key pair file] ubuntu@[ip address]  
 Elastic IP address:  98.84.128.125  
 To open website:  http://98.84.128.125  
-##### Route 52
+#### Route 52
 Website with domain: [http://chorechum.click](http://chorechum.click)  
 Adding a record with the record name "*" is a wildcard, meaning that you can reach your domain with any subdomain added on. For example "http://chorechum.click" works, as well as "http://simon.chorechum.click"
+#### Using Caddy
+Command to remote shell (make sure key pair file is done as file path): ssh -i [key pair file] ubuntu@[yourdomainnamehere]  
+Enter Caddy: cd ~ , then vi Caddyfile  
+Change :80 and yourdomain to domain name  
+Press escape to stop editing
+To save and exit:   :wq  
+
 
 ## HTML Notes
 
