@@ -7,13 +7,14 @@
 - [Course instruction](https://github.com/webprogramming260)
 - [Canvas](https://byu.instructure.com)
 - [MDN](https://developer.mozilla.org)
+- [Markdown Documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 
 ## AWS Notes
 
 #### AWS Startup
-Command to remote shell into the server:   ssh -i [key pair file] ubuntu@[ip address]
-Elastic IP address:  98.84.128.125
-To open website:  http://98.84.128.125
+Command to remote shell into the server:   ssh -i [key pair file] ubuntu@[ip address]  
+Elastic IP address:  98.84.128.125  
+To open website:  http://98.84.128.125  
 
 ## HTML Notes
 
