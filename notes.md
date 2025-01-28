@@ -28,4 +28,13 @@ To save and exit:   :wq
 
 ## HTML Notes
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+img command: <img src="https//insertlink">  no closing tag
+to create checkboxes: <label for="checkbox2">checkbox2</label>
+          <input type="checkbox" id="checkbox2" name="varCheckbox" value="checkbox2" />
+creat dropdown options: <label for="optgroup">OptGroup: </label>
+        <select id="optgroup" name="varOptGroup">
+          <optgroup label="group1">
+            <option>option1</option>
+            <option selected>option2</option>
+          </optgroup>
+    groups within dropdowns not necessary, just an additional use 
