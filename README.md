@@ -78,15 +78,15 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - I created 2 different HTML pages after deciding that adding a third was not necessary.
+- [x] **Proper HTML element usage** - I used HTML elements properly.
+- [x] **Links** - My links to other pages and to my GitHub Repo all work.
+- [x] **Text** - I added text where it was necessary.
+- [x] **3rd party API placeholder** - I created a placeholder for a 3rd party API.
+- [x] **Images** - I added 1 image, I am still thinking of other ways that I could implement images into my application.
+- [x] **Login placeholder** - I created a placeholder for the login.
+- [x] **DB data placeholder** - I did my best to create a database data placeholder but am not completely sure that I did it correctly.
+- [x] **WebSocket placeholder** - I am also not sure that I did this one correctly.
 
 ## 🚀 CSS deliverable
 
