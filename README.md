@@ -85,8 +85,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **3rd party API placeholder** - I created a placeholder for a 3rd party API.
 - [x] **Images** - I added 1 image, I am still thinking of other ways that I could implement images into my application.
 - [x] **Login placeholder** - I created a placeholder for the login.
-- [x] **DB data placeholder** - I did my best to create a database data placeholder but am not completely sure that I did it correctly.
-- [x] **WebSocket placeholder** - I am also not sure that I did this one correctly.
+- [x] **DB data placeholder** -One database placeholder is the friends list.
+- [x] **WebSocket placeholder** - The websocket placeholder is the calendar, which will be updated when people add or join errands.
 
 ## 🚀 CSS deliverable
 
