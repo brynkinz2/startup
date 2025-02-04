@@ -30,13 +30,13 @@ To save and exit:   :wq
 
 img command: img src="https//insertlink"  no closing tag  
 to create checkboxes: \<label for="checkbox2"\>checkbox2\</label\>  
-          <input type="checkbox" id="checkbox2" name="varCheckbox" value="checkbox2" />  
-creat dropdown options: <label for="optgroup">OptGroup: </label>  
-        <select id="optgroup" name="varOptGroup">  
-          <optgroup label="group1">  
-            <option>option1</option>  
-            <option selected>option2</option>  
-          </optgroup>  
+          \<input type="checkbox" id="checkbox2" name="varCheckbox" value="checkbox2" /\>  
+creat dropdown options: \<label for="optgroup"\>OptGroup: \</label\>  
+        \<select id="optgroup" name="varOptGroup"\>  
+          \<optgroup label="group1"\>  
+            \<option\>option1\</option\>  
+            \<option selected\>option2\</option\>  
+          \</optgroup\>  
     groups within dropdowns not necessary, just an additional use   
 
 
