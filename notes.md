@@ -29,7 +29,7 @@ To save and exit:   :wq
 ## HTML Notes
 
 img command: img src="https//insertlink"  no closing tag  
-to create checkboxes: <label for="checkbox2">checkbox2</label>  
+to create checkboxes: \<label for="checkbox2"\>checkbox2\</label\>  
           <input type="checkbox" id="checkbox2" name="varCheckbox" value="checkbox2" />  
 creat dropdown options: <label for="optgroup">OptGroup: </label>  
         <select id="optgroup" name="varOptGroup">  
