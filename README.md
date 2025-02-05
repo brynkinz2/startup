@@ -95,9 +95,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Header, footer, and main content body** - Used each of these elements
 - [x] **Navigation elements** - I included navigation in the header.
 - [x] **Responsive to window resizing** - I did complete this part of the deliverable.
-- [ ] **Application elements** - I did not complete this part of the deliverable.
-- [ ] **Application text content** - I did not complete this part of the deliverable.
-- [ ] **Application images** - I did not complete this part of the deliverable.
+- [x] **Application elements** - I included different elements.
+- [x] **Application text content** - I have text content.
+- [x] **Application images** - I added a new image that shrinks with page.
 
 ## 🚀 React part 1: Routing deliverable
 
