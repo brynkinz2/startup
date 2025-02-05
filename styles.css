@@ -28,6 +28,7 @@ body {
 .sidebar {
     width: 20%;
     height: 100%;
+    position: fixed;
     background: #60b3eb;
     padding: 20px;
 }
