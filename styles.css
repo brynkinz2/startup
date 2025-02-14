@@ -1,6 +1,6 @@
 header {
     font-family: Chalkboard;
-    text-align: left;
+    text-align: center;
     background: #3d3d3d;
     color: white;
     padding-left: 10px;
@@ -8,7 +8,6 @@ header {
 h1 {
     font-size: 80px !important;
     font-family: Chalkboard;
-
 }
 a {
     padding: 10px;
@@ -26,19 +25,25 @@ body {
     background: gray !important;
 }
 .sidebar {
+    display:inline-block;
     width: 20%;
     height: 100%;
     position: fixed;
     background: #60b3eb;
     padding: 20px;
 }
-.main-content {
-    padding: 10px;
-    margin-left: 20%;
-}
 .welcome {
     text-align: center;
 }
+
+main {
+    flex: 1 calc(100vh - 110px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
 .login {
     text-align: center;
 }
@@ -49,13 +54,21 @@ footer {
     padding-top: 50px;
     text-align: center;
 }
+menu {
+    flex: 1;
+    display: flex;
+    /*  overwrite Bootstrap so the menu does not wrap */
+    flex-direction: row !important;
+    list-style: none;
+}
+
 @media (orientation: portrait) {
     main {
-        flex-direction: column;
+
     }
 }
 
-@media (max-height: 700px) {
+@media (max-height: 500px) {
     header {
         display: none;
     }
