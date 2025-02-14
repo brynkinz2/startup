@@ -1,0 +1,14 @@
+.main-content {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+h2 {
+    font-size: 40px !important;
+    color: aliceblue;
+}
+.login {
+    text-align: center;
+}

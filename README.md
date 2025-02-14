@@ -65,7 +65,7 @@ I am going to use the required technologies in the following ways.
     - login
     - retrieving events from friends
     - choosing to join on an errand
-- **DB/Login** - Stores users, events hosted, events joined, and friends list in database. Register and login users. Credentials securely stored in database. Can't post events unless authenticated.
+- **DB/Calendar** - Stores users, events hosted, events joined, and friends list in database. Register and login users. Credentials securely stored in database. Can't post events unless authenticated.
 - **WebSocket** - As each user hosts an errand, those events are broadcasted to those in friends list.
 
 ## 🚀 AWS deliverable
@@ -124,7 +124,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
 - [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
 
-## 🚀 DB/Login deliverable
+## 🚀 DB/Calendar deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
