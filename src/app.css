@@ -30,8 +30,9 @@ a:hover {
 
 main {
     background: #2d2f30 !important;
-    padding-bottom: 50px;
     color: aliceblue;
+    text-align: center;
+    padding: 50px;
 }
 
 footer {

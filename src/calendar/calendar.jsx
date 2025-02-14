@@ -1,9 +1,9 @@
 import React from 'react';
 
-export function Login() {
+export function Calendar() {
     return (
         <main className='body bg-dark text-light'>
-            <div>Login displayed here</div>
+            <div>Calendar displayed here</div>
         </main>
     )
 }

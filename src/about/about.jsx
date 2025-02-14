@@ -1,9 +1,9 @@
 import React from 'react';
 
-export function Login() {
+export function About() {
     return (
         <main className='body bg-dark text-light'>
-            <div>Login displayed here</div>
+            <div>About displayed here</div>
         </main>
     )
 }
