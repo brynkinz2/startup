@@ -84,20 +84,20 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Text** - I added text where it was necessary.
 - [x] **3rd party API placeholder** - I created a placeholder for a 3rd party API.
 - [x] **Images** - I added 1 image, I am still thinking of other ways that I could implement images into my application.
-- [x] **Calendar placeholder** - I created a placeholder for the login.
-- [x] **DB data placeholder** - I did my best to create a database data placeholder but am not completely sure that I did it correctly.
-- [x] **WebSocket placeholder** - I am also not sure that I did this one correctly.
+- [x] **Login placeholder** - I created a placeholder for the login.
+- [x] **DB data placeholder** -One database placeholder is the friends list.
+- [x] **WebSocket placeholder** - The websocket placeholder is the calendar, which will be updated when people add or join errands.
 
 ## 🚀 CSS deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Header, footer, and main content body** - I did not complete this part of the deliverable.
-- [ ] **Navigation elements** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing** - I did not complete this part of the deliverable.
-- [ ] **Application elements** - I did not complete this part of the deliverable.
-- [ ] **Application text content** - I did not complete this part of the deliverable.
-- [ ] **Application images** - I did not complete this part of the deliverable.
+- [x] **Header, footer, and main content body** - Used each of these elements
+- [x] **Navigation elements** - I included navigation in the header.
+- [x] **Responsive to window resizing** - I did complete this part of the deliverable.
+- [x] **Application elements** - I included different elements.
+- [x] **Application text content** - I have text content.
+- [x] **Application images** - I added a new image that shrinks with page.
 
 ## 🚀 React part 1: Routing deliverable
 
