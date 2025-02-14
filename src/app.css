@@ -1,0 +1,58 @@
+header {
+    font-family: Chalkboard;
+    text-align: center;
+    background-image: url("public/backgroundPhoto.jpg");
+    background-size: 100% 100%;
+    color: white;
+    padding-left: 10px;
+}
+h1 {
+    font-size: 80px !important;
+    font-family: Chalkboard;
+}
+a {
+    padding: 10px;
+}
+a:link {
+    color: white;
+}
+a:visited {
+    color: white;
+}
+a:hover {
+    color: darkgray;
+}
+
+
+.welcome {
+    text-align: center;
+}
+
+main {
+    background: #2d2f30 !important;
+    padding-bottom: 50px;
+    color: aliceblue;
+}
+
+footer {
+    border-top: white solid 2px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    background: #2d2f30 !important;
+}
+
+@media (orientation: portrait) {
+    main {
+
+    }
+}
+
+@media (max-height: 500px) {
+    header {
+        display: none;
+    }
+    footer {
+        display: none;
+    }
+}

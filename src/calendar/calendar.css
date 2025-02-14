@@ -1,0 +1,25 @@
+.main-content {
+    padding-top: 20px;
+    flex: 1 calc(100vh - 110px);
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+.main-content .friends {
+    vertical-align: top;
+    padding-left: 50px;
+    padding-right: 50px;
+    justify-content: space-between;
+}
+.main-content .friends input {
+    margin-bottom: 7px;
+}
+
+.main-content .friends ul {
+    padding-top: 7px;
+}
+
+.main-content .calendarHolder {
+    text-align: justify;
+}
