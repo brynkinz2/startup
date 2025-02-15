@@ -49,6 +49,14 @@ To implement bootstrap:
           \<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"\>  
     \<link href="https://getbootstrap.com/docs/5.1/assets/css/docs.css" rel="stylesheet"\>  
 
+## React Notes
+#### Part 1
+React is really helpful for making you be sure to organize your files appropriately. Because it won't work without 'public' and 'src' directories, you have to make those folders and use them. Public is used for photos and other media and src is for the different sections of your website (i.e. About page, Home page, etc). 
 
+Things to make sure to change:
+-/<a> (anchor tags) to /<NavLink>
+-'class' to 'className'
+-make 'app.css' in src directory
+-make .jsx files
 
     
