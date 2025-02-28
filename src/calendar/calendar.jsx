@@ -20,6 +20,7 @@ export function Calendar({userName}) {
         const savedEvents = localStorage.getItem('events');
         return savedEvents ? JSON.parse(savedEvents) : [];
     });
+    const [msg, setMsg] = React.useState('Friends events will also appear here.');
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -82,6 +83,23 @@ export function Calendar({userName}) {
             localStorage.setItem('listOfFriends', friendsList);
         }
     }
+
+    React.useEffect(() => {
+        const eventInterval = setInterval(() => {
+            // Create a new mock event
+            const newEvent = {
+                title: `Mock Event ${Math.floor(Math.random() * 1000)}`,
+                time: `${Math.floor(Math.random() * 24)}:${Math.floor(Math.random() * 60)}`,
+                date: new Date().toLocaleDateString(),
+                place: `${Math.floor(Math.random() * 100)} N ${Math.floor(Math.random() * 100)} E`,
+            };
+
+            // Add the new event to the events state
+            setEvents((prevEvents) => [...prevEvents, newEvent]);
+        }, 5000); // every 5 seconds;
+        return () => clearInterval(eventInterval);
+
+    })
 
     return (
         <main>
