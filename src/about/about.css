@@ -1,4 +1,4 @@
-.main-content {
+.main-about {
     padding-top: 20px;
     text-align: center;
     display: flex;
@@ -8,11 +8,11 @@
     color: aliceblue;
 }
 
-.main-content p {
+.main-about p {
     width: 50%;
     padding-bottom: 15px;
 }
 
-.img {
-    width: 50px;
+.main-about img {
+    width: 20%;
 }
