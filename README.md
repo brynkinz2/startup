@@ -103,16 +103,16 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - Routing between login and voting components.
+- [x] **Bundled using Vite** - I did complete this part of the deliverable.
+- [x] **Components** - I did complete this part of the deliverable.
+- [x] **Router** - Routing between login and voting components.
 
 ## 🚀 React part 2: Reactivity
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - The calendar became too complex to finish for this deadline, so for now there is a replacement list of events that is shown when events are added. I will go back to the calendar with some more work on it.
+- [x] **Hooks** - I not complete this part of the deliverable.
 
 ## 🚀 Service deliverable
 
