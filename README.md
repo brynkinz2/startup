@@ -112,7 +112,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [x] **All functionality implemented or mocked out** - The calendar became too complex to finish for this deadline, so for now there is a replacement list of events that is shown when events are added. I will go back to the calendar with some more work on it.
-- [x] **Hooks** - I not complete this part of the deliverable.
+- [x] **Hooks** - I did complete this part of the deliverable.
 
 ## 🚀 Service deliverable
 
