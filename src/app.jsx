@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
@@ -6,10 +6,16 @@ import { BrowserRouter, NavLink, Route, Routes} from "react-router-dom";
 import { Login } from './login/login';
 import { Calendar } from './calendar/calendar';
 import { About } from './about/about';
+import { AuthState } from './login/authState';
+// import {response} from "express";
 
 
 export default function App() {
-    const [userName, setUsername] = React.useState(localStorage.getItem('user') || null);
+    const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+    const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+    const [authState, setAuthState] = React.useState(currentAuthState);
+    const [backendData, setBackendData] = React.useState([{}]);
+
     return (
         <BrowserRouter>
             <div className='body'>
@@ -27,7 +33,20 @@ export default function App() {
                 </header>
 
                 <Routes>
-                    <Route path='/' element={<Login setUser={setUsername}/>} exact />
+                    <Route
+                        path='/'
+                        element={
+                            <Login
+                                userName={userName}
+                                authState={authState}
+                                onAuthChange={(userName, authState) => {
+                                    setAuthState(authState);
+                                    setUserName(userName);
+                                }}
+                            />
+                        }
+                        exact
+                    />
                     <Route path='/calendar' element={<Calendar userName={userName}/>} />
                     <Route path='/about' element={<About />} />
                     <Route path='*' element={<NotFound />} />

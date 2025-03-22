@@ -22,6 +22,14 @@ export function Calendar({userName}) {
     });
     const [msg, setMsg] = React.useState('Friends events will also appear here.');
 
+    React.useEffect(() => {
+        fetch(`/api/events?username=${encodeURIComponent(userName)}`)
+            .then((response) => response.json())
+            .then((data) => {
+                setEvents(data.events);
+            });
+    }, []);
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setEventDetails(prevDetails => ({
@@ -60,9 +68,32 @@ export function Calendar({userName}) {
                 return updatedEvents;
             });
             setEventDetails({ title: '', time: '', date: '', place: '' });
+            createEvent(formattedTime);
         }
         closeModal();
     }
+
+    async function createEvent(formattedTime) {
+        const response = await fetch('/api/events/create', {
+            method: 'post',
+            body: JSON.stringify({
+                username: userName,
+                eventTitle: eventDetails.title,
+                day: eventDetails.date,
+                time: formattedTime,
+                // place: eventDetails.place,
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        });
+        console.log("created");
+        if (!response.ok) {
+            throw new Error(`Server error: ${response.status}`);
+        }
+        const result = await response.json();
+        console.log('Event created:', result);
+        }
 
     // Helper function to convert 24-hour time to 12-hour format
     function convertTo12HourFormat(time24) {
@@ -84,22 +115,22 @@ export function Calendar({userName}) {
         }
     }
 
-    React.useEffect(() => {
-        const eventInterval = setInterval(() => {
-            // Create a new mock event
-            const newEvent = {
-                title: `Mock Event ${Math.floor(Math.random() * 1000)}`,
-                time: `${Math.floor(Math.random() * 24)}:${Math.floor(Math.random() * 60)}`,
-                date: new Date().toLocaleDateString(),
-                place: `${Math.floor(Math.random() * 100)} N ${Math.floor(Math.random() * 100)} E`,
-            };
-
-            // Add the new event to the events state
-            setEvents((prevEvents) => [...prevEvents, newEvent]);
-        }, 5000); // every 5 seconds;
-        return () => clearInterval(eventInterval);
-
-    })
+    // React.useEffect(() => {
+    //     const eventInterval = setInterval(() => {
+    //         // Create a new mock event
+    //         const newEvent = {
+    //             title: `Mock Event ${Math.floor(Math.random() * 1000)}`,
+    //             time: `${Math.floor(Math.random() * 24)}:${Math.floor(Math.random() * 60)}`,
+    //             date: new Date().toLocaleDateString(),
+    //             place: `${Math.floor(Math.random() * 100)} N ${Math.floor(Math.random() * 100)} E`,
+    //         };
+    //
+    //         // Add the new event to the events state
+    //         setEvents((prevEvents) => [...prevEvents, newEvent]);
+    //     }, 5000); // every 5 seconds;
+    //     return () => clearInterval(eventInterval);
+    //
+    // })
 
     return (
         <main>

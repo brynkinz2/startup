@@ -1,48 +1,26 @@
-import React, { useState } from 'react';
-import {useNavigate} from "react-router-dom";
+import React from 'react';
 
 import './login.css';
+import { Unauthenticated } from './unauthenticated';
+import { AuthState } from './authState';
+import {Authenticated} from "./Authenticated";
 
 
-export function Login({setUser}) {
-    const [userName, setUsername] = React.useState(localStorage.getItem('user') || '');
-    const navigate = useNavigate();
-    function loginUser(e) {
-        e.preventDefault();
-        localStorage.setItem('user', userName);
-        setUser(userName);
-        navigate('/calendar');
-    }
-
-    function textChange(e) {
-        setUsername(e.target.value);
-    }
-
+export function Login({ userName, authState, onAuthChange }) {
     return (
-        <main>
-            <div className="main-login">
-                <div className="welcome">
-                    <h2>Welcome to ChoreChum</h2>
-                    <img src="/hugging.png" width="100" height="100" />
-                        <br/>
-                </div>
-                <div className="login">
-                    <form method="get" action="play.html">
-                        <div className="input-group mb-3">
-                            <span className="input-group-text">@</span>
-                            <input className="form-control" type="text" placeholder="username" onChange={textChange}/>
-                        </div>
-                        <div className="input-group mb-3">
-                            <span className="input-group-text">🔒</span>
-                            <input className="form-control" type="password" placeholder="password"/>
-                        </div>
-                        <button onClick={loginUser} type="submit" className="btn btn-primary">Login</button>
-                        <button type="submit" className="btn btn-secondary">Create</button>
-                    </form>
-                </div>
-            </div>
-
-
-        </main>
+        <div>
+            {authState !== AuthState.Unknown}
+            {authState === AuthState.Authenticated && (
+                <Authenticated userName={userName} onLogout={() => onAuthChange(userName, AuthState.Unauthenticated)} />
+            )}
+            {authState === AuthState.Unauthenticated && (
+                <Unauthenticated
+                    userName={userName}
+                    onLogin={(loginUserName) => {
+                        onAuthChange(loginUserName, AuthState.Authenticated);
+                    }}
+                />
+            )}
+        </div>
     );
 }

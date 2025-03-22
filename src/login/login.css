@@ -12,3 +12,6 @@ h2 {
 .login {
     text-align: center;
 }
+.login .buttons {
+    gap: 10px;
+}

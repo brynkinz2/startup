@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
-import {useNavigate} from "react-router-dom";
 
 import './login.css';
+import {useNavigate} from "react-router-dom";
 
 
-export function Login({setUser}) {
-    const [userName, setUsername] = React.useState(localStorage.getItem('user') || '');
+export function Authenticated(props) {
     const navigate = useNavigate();
-    function loginUser(e) {
-        e.preventDefault();
-        localStorage.clear();
-        localStorage.setItem('user', userName);
-        setUser(userName);
-        navigate('/calendar');
-    }
 
-    function textChange(e) {
-        setUsername(e.target.value);
+    function logout() {
+        fetch(`/api/auth/logout`, {
+            method: 'delete',
+        })
+            .catch(() => {
+                // Logout failed. Assuming offline
+            })
+            .finally(() => {
+                localStorage.removeItem('userName');
+                props.onLogout();
+            });
     }
 
     return (
@@ -26,23 +27,14 @@ export function Login({setUser}) {
                     <h2>Welcome to ChoreChum</h2>
                     <img src="/hugging.png" width="100" height="100" />
                         <br/>
+                    <div>Good luck chumming, {props.userName || "Guest"}!</div>
+                    <br />
                 </div>
-                <div className="login">
-                    <form method="get" action="play.html">
-                        <div className="input-group mb-3">
-                            <span className="input-group-text">@</span>
-                            <input className="form-control" type="text" placeholder="username" onChange={textChange}/>
-                        </div>
-                        <div className="input-group mb-3">
-                            <span className="input-group-text">🔒</span>
-                            <input className="form-control" type="password" placeholder="password"/>
-                        </div>
-                        <button onClick={loginUser} type="submit" className="btn btn-primary">Login</button>
-                        <button type="submit" className="btn btn-secondary">Create</button>
-                    </form>
+                <div className="logout">
+                    <button onClick={() => navigate("/calendar")} className="btn btn-primary">Calendar</button>
+                    <button className="btn btn-secondary" onClick={() => logout()}>Logout</button>
                 </div>
             </div>
-
 
         </main>
     );

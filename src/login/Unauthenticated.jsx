@@ -1,22 +1,38 @@
-import React, { useState } from 'react';
-import {useNavigate} from "react-router-dom";
+import React from 'react';
 
-import './login.css';
+import Button from 'react-bootstrap/Button';
 
+export function Unauthenticated(props) {
+    const [userName, setUserName] = React.useState(props.userName);
+    const [password, setPassword] = React.useState('');
+    const [displayError, setDisplayError] = React.useState(null);
 
-export function Login({setUser}) {
-    const [userName, setUsername] = React.useState(localStorage.getItem('user') || '');
-    const navigate = useNavigate();
-    function loginUser(e) {
-        e.preventDefault();
-        localStorage.clear();
-        localStorage.setItem('user', userName);
-        setUser(userName);
-        navigate('/calendar');
+    async function loginUser() {
+        console.log("Button Clicked");
+        loginOrCreate(`/api/auth/login`);
     }
 
-    function textChange(e) {
-        setUsername(e.target.value);
+    async function createUser() {
+        console.log("Button Clicked");
+        loginOrCreate(`/api/auth/create`);
+    }
+
+    async function loginOrCreate(endpoint) {
+        const response = await fetch(endpoint, {
+            method: 'post',
+            body: JSON.stringify({ username: userName, password: password }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        });
+        if (response?.status === 200) {
+            localStorage.setItem('userName', userName);
+            props.onLogin(userName);
+        }
+        else {
+            const body = await response.json();
+            setDisplayError(`⚠ Error: ${body.msg}`);
+        }
     }
 
     return (
@@ -28,19 +44,21 @@ export function Login({setUser}) {
                         <br/>
                 </div>
                 <div className="login">
-                    <form method="get" action="play.html">
-                        <div className="input-group mb-3">
-                            <span className="input-group-text">@</span>
-                            <input className="form-control" type="text" placeholder="username" onChange={textChange}/>
-                        </div>
-                        <div className="input-group mb-3">
-                            <span className="input-group-text">🔒</span>
-                            <input className="form-control" type="password" placeholder="password"/>
-                        </div>
-                        <button onClick={loginUser} type="submit" className="btn btn-primary">Login</button>
-                        <button type="submit" className="btn btn-secondary">Create</button>
-                    </form>
+                    <div className="input-group mb-3">
+                        <span className="input-group-text">@</span>
+                        <input className="form-control" type="text" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder='username'/>
+                    </div>
+                    <div className="input-group mb-3">
+                        <span className="input-group-text">🔒</span>
+                        <input className="form-control" type="password" onChange={(e) => setPassword(e.target.value)} placeholder='password'/>
+                    </div>
+                    <div className="buttons">
+                    <Button type="submit" className="btn btn-primary" onClick={() => loginUser()} disabled={!userName || !password}>Login</Button>
+                    <Button type="submit" className="btn btn-secondary" onClick={() => createUser()} disabled={!userName || !password}>Create</Button>
+                    </div>
                 </div>
+
+                <div>{displayError}</div>
             </div>
 
 
