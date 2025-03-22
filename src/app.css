@@ -1,0 +1,72 @@
+header {
+    font-family: Chalkboard;
+    text-align: center;
+    background-image: url("/backgroundPhoto.jpg");
+    background-size: 100% 100%;
+    color: white;
+    padding-bottom: 10px;
+}
+h1 {
+    font-size: 80px !important;
+    font-family: Chalkboard;
+    padding-top: 20px;
+}
+
+.body .username {
+    float: right;
+    font-size: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+.body nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+a {
+    padding: 10px;
+}
+a:link {
+    color: white;
+}
+a:visited {
+    color: white;
+}
+a:hover {
+    color: darkgray;
+}
+
+
+.welcome {
+    text-align: center;
+}
+
+main {
+    background: #2d2f30 !important;
+    color: aliceblue;
+    text-align: center;
+    padding: 50px;
+}
+
+footer {
+    border-top: white solid 2px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    background: #2d2f30 !important;
+}
+
+@media (orientation: portrait) {
+    main {
+
+    }
+}
+
+@media (max-height: 500px) {
+    header {
+        display: none;
+    }
+    footer {
+        display: none;
+    }
+}

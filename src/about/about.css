@@ -1,0 +1,18 @@
+.main-about {
+    padding-top: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    color: aliceblue;
+}
+
+.main-about p {
+    width: 50%;
+    padding-bottom: 15px;
+}
+
+.main-about img {
+    width: 20%;
+}

@@ -65,39 +65,39 @@ I am going to use the required technologies in the following ways.
     - login
     - retrieving events from friends
     - choosing to join on an errand
-- **DB/Login** - Stores users, events hosted, events joined, and friends list in database. Register and login users. Credentials securely stored in database. Can't post events unless authenticated.
+- **DB/Calendar** - Stores users, events hosted, events joined, and friends list in database. Register and login users. Credentials securely stored in database. Can't post events unless authenticated.
 - **WebSocket** - As each user hosts an errand, those events are broadcasted to those in friends list.
 
 ## 🚀 AWS deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Server deployed and accessible with custom domain name** - [My server link](https://yourdomainnamehere.click).
+- [x] **Server deployed and accessible with custom domain name** - [My server link](https://yourdomainnamehere.click).
 
 ## 🚀 HTML deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - I created 2 different HTML pages after deciding that adding a third was not necessary.
+- [x] **Proper HTML element usage** - I used HTML elements properly.
+- [x] **Links** - My links to other pages and to my GitHub Repo all work.
+- [x] **Text** - I added text where it was necessary.
+- [x] **3rd party API placeholder** - I created a placeholder for a 3rd party API.
+- [x] **Images** - I added 1 image, I am still thinking of other ways that I could implement images into my application.
+- [x] **Login placeholder** - I created a placeholder for the login.
+- [x] **DB data placeholder** -One database placeholder is the friends list.
+- [x] **WebSocket placeholder** - The websocket placeholder is the calendar, which will be updated when people add or join errands.
 
 ## 🚀 CSS deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Header, footer, and main content body** - I did not complete this part of the deliverable.
-- [ ] **Navigation elements** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing** - I did not complete this part of the deliverable.
-- [ ] **Application elements** - I did not complete this part of the deliverable.
-- [ ] **Application text content** - I did not complete this part of the deliverable.
-- [ ] **Application images** - I did not complete this part of the deliverable.
+- [x] **Header, footer, and main content body** - Used each of these elements
+- [x] **Navigation elements** - I included navigation in the header.
+- [x] **Responsive to window resizing** - I did complete this part of the deliverable.
+- [x] **Application elements** - I included different elements.
+- [x] **Application text content** - I have text content.
+- [x] **Application images** - I added a new image that shrinks with page.
 
 ## 🚀 React part 1: Routing deliverable
 
@@ -124,7 +124,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
 - [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
 
-## 🚀 DB/Login deliverable
+## 🚀 DB/Calendar deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
@@ -143,3 +143,4 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
 - [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
 - [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+      
