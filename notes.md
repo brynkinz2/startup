@@ -49,6 +49,19 @@ To implement bootstrap:
           \<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"\>  
     \<link href="https://getbootstrap.com/docs/5.1/assets/css/docs.css" rel="stylesheet"\>  
 
+## Backend Notes  
+Using a backend server changes the game!
+Commands for use:
+- post: create an item to save to the server
+- get: receive an item from the server
+- delete: delete an item from the server
 
+To request info from the frontend:
+fetch!
+
+req.query.username.:
+-fetch(`/api/events?username=${encodeURIComponent(userName)}`)
+
+events are stored in memory (events array) and not persisted in a database, need to save them to a database or reload them correctly from the API on login.
 
     
