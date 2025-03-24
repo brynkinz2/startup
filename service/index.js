@@ -64,6 +64,16 @@ apiRouter.delete('/auth/logout', async (req, res) => {
     res.status(204).end();
 });
 
+// Middleware to verify that the user is authorized to call an endpoint
+const verifyAuth = async (req, res, next) => {
+    const user = await findUser('token', req.cookies[authCookieName]);
+    if (user) {
+        next();
+    } else {
+        res.status(401).send({ msg: 'Unauthorized' });
+    }
+};
+
 // setAuthCookie in the HTTP response
 function setAuthCookie(res, authToken) {
     res.cookie(authCookieName, authToken, {
@@ -74,7 +84,7 @@ function setAuthCookie(res, authToken) {
 }
 
 // create a new event
-apiRouter.post('/events/create', async (req, res) => {
+apiRouter.post('/events/create', verifyAuth, async (req, res) => {
     //authenticate the user
     const user = await findUser('username', req.body.username);
     if (user) {
@@ -93,7 +103,7 @@ apiRouter.post('/events/create', async (req, res) => {
     }
 })
 
-app.get("/api/events", (req, res) => {
+app.get("/api/events", verifyAuth, (req, res) => {
     const { username } = req.query;
     if (!username) {
         return res.status(400).json({ error: "Username is required" });
