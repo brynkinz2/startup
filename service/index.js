@@ -103,12 +103,15 @@ apiRouter.post('/events/create', verifyAuth, async (req, res) => {
     }
 })
 
-app.get("/api/events", verifyAuth, (req, res) => {
+// app.get("/api/events", verifyAuth, (req, res) => {
+app.get("/api/events", (req, res) => {
     const { username } = req.query;
+    console.log("Found user");
     if (!username) {
         return res.status(400).json({ error: "Username is required" });
     }
-    const userEvents = events.filter(event => event.username === username);
+    const userEvents = events.filter(event => event.userID === username);
+    console.log(userEvents);
 
     res.json({"events" : userEvents});
 })
