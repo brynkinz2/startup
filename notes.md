@@ -64,4 +64,10 @@ req.query.username.:
 
 events are stored in memory (events array) and not persisted in a database, need to save them to a database or reload them correctly from the API on login.
 
+
+## 3rd Party APIs
+Good place to look for one: [Free APIs](https://www.freepublicapis.com/)  
+
+Need to know what elements are present in the data it is sending so that you can fetch them in your program
+
     
