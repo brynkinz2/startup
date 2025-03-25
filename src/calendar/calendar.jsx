@@ -23,7 +23,7 @@ export function Calendar({userName}) {
     const [msg, setMsg] = React.useState('Friends events will also appear here.');
 
     React.useEffect(() => {
-        fetch(`/api/events?username=${encodeURIComponent(userName)}`)
+        fetch(`/api/events?username=${userName}`)
             .then((response) => response.json())
             .then((data) => {
                 setEvents(data.events);
@@ -80,7 +80,7 @@ export function Calendar({userName}) {
                 username: userName,
                 eventTitle: eventDetails.title,
                 day: eventDetails.date,
-                time: formattedTime,
+                time: formattedTime
                 // place: eventDetails.place,
             }),
             headers: {
@@ -115,22 +115,22 @@ export function Calendar({userName}) {
         }
     }
 
-    // React.useEffect(() => {
-    //     const eventInterval = setInterval(() => {
-    //         // Create a new mock event
-    //         const newEvent = {
-    //             title: `Mock Event ${Math.floor(Math.random() * 1000)}`,
-    //             time: `${Math.floor(Math.random() * 24)}:${Math.floor(Math.random() * 60)}`,
-    //             date: new Date().toLocaleDateString(),
-    //             place: `${Math.floor(Math.random() * 100)} N ${Math.floor(Math.random() * 100)} E`,
-    //         };
-    //
-    //         // Add the new event to the events state
-    //         setEvents((prevEvents) => [...prevEvents, newEvent]);
-    //     }, 5000); // every 5 seconds;
-    //     return () => clearInterval(eventInterval);
-    //
-    // })
+    React.useEffect(() => {
+        const eventInterval = setInterval(() => {
+            // Create a new mock event
+            const newEvent = {
+                title: `Mock Event ${Math.floor(Math.random() * 1000)}`,
+                time: `${Math.floor(Math.random() * 24)}:${Math.floor(Math.random() * 60)}`,
+                date: new Date().toLocaleDateString(),
+                place: `${Math.floor(Math.random() * 100)} N ${Math.floor(Math.random() * 100)} E`,
+            };
+
+            // Add the new event to the events state
+            setEvents((prevEvents) => [...prevEvents, newEvent]);
+        }, 5000); // every 5 seconds;
+        return () => clearInterval(eventInterval);
+
+    })
 
     return (
         <main>
