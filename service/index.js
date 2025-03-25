@@ -3,6 +3,8 @@ const bcrypt = require('bcryptjs');
 const express = require('express');
 const uuid = require('uuid');
 const app = express();
+const DB = require('./database.js');
+const {getUserEvents} = require("./database");
 
 const authCookieName = 'token';
 
@@ -21,7 +23,6 @@ app.use(cookieParser());
 
 // Serve up the front-end static content hosting
 app.use(express.static('public'));
-
 
 // Router for service endpoints
 var apiRouter = express.Router();
@@ -42,10 +43,12 @@ apiRouter.post('/auth/create', async (req, res) => {
 // GetAuth login an existing user
 apiRouter.post('/auth/login', async (req, res) => {
     const user = await findUser('username', req.body.username);
+    console.log(user.username);
     if (user) {
         console.log("userFound");
         if (await bcrypt.compare(req.body.password, user.password)) {
             user.token = uuid.v4();
+            await DB.updateUser(user);
             setAuthCookie(res, user.token);
             res.send({ username: user.username });
             return;
@@ -66,6 +69,8 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 
 // Middleware to verify that the user is authorized to call an endpoint
 const verifyAuth = async (req, res, next) => {
+    console.log('Cookies:', req.cookies);
+    console.log('Auth token:', req.cookies[authCookieName]);
     const user = await findUser('token', req.cookies[authCookieName]);
     if (user) {
         next();
@@ -85,8 +90,11 @@ function setAuthCookie(res, authToken) {
 
 // create a new event
 apiRouter.post('/events/create', verifyAuth, async (req, res) => {
+// apiRouter.post('/events/create', async (req, res) => {
+
     //authenticate the user
     const user = await findUser('username', req.body.username);
+    console.log("Found user");
     if (user) {
         console.log("works");
         //validate that the request has all the parts
@@ -98,20 +106,21 @@ apiRouter.post('/events/create', verifyAuth, async (req, res) => {
         }
         //save it into the events table
         events.push(currEvent);
-        console.log("Event pushed!");
+        console.log("Event pushed to server");
+        await DB.addEvent(currEvent);
+        console.log("Event pushed to database!");
         return;
     }
 })
 
-// app.get("/api/events", verifyAuth, (req, res) => {
-app.get("/api/events", (req, res) => {
+app.get("/api/events", verifyAuth, (req, res) => {
+// app.get("/api/events", (req, res) => {
     const { username } = req.query;
-    console.log("Found user");
     if (!username) {
         return res.status(400).json({ error: "Username is required" });
     }
-    const userEvents = events.filter(event => event.userID === username);
-    console.log(userEvents);
+    // const userEvents = events.filter(event => event.userID === username);
+    const userEvents = getUserEvents(username);
 
     res.json({"events" : userEvents});
 })
@@ -130,6 +139,7 @@ async function createUser(username, password) {
         token: uuid.v4(),
     };
     users.push(user);
+    await DB.addUser(user);
 
     return user;
 }
@@ -137,7 +147,13 @@ async function createUser(username, password) {
 async function findUser(field, value) {
     if (!value) return null;
 
-    return users.find((u) => u[field] === value);
+    if (field === 'token') {
+        console.log('finding token');
+        const currUser = DB.getUserByToken(value);
+        console.log(currUser);
+        return currUser;
+    }
+    return DB.getUser(value);
 }
 
 app.listen(port, () => {

@@ -80,7 +80,7 @@ export function Calendar({userName}) {
                 username: userName,
                 eventTitle: eventDetails.title,
                 day: eventDetails.date,
-                time: formattedTime,
+                time: formattedTime
                 // place: eventDetails.place,
             }),
             headers: {
