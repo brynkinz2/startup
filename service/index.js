@@ -4,7 +4,8 @@ const express = require('express');
 const uuid = require('uuid');
 const app = express();
 const DB = require('./database.js');
-const {getUserEvents} = require("./database");
+const {getUserEvents, getUserFriends} = require("./database");
+const res = require("express/lib/response");
 
 const authCookieName = 'token';
 
@@ -43,7 +44,6 @@ apiRouter.post('/auth/create', async (req, res) => {
 // GetAuth login an existing user
 apiRouter.post('/auth/login', async (req, res) => {
     const user = await findUser('username', req.body.username);
-    console.log(user.username);
     if (user) {
         console.log("userFound");
         if (await bcrypt.compare(req.body.password, user.password)) {
@@ -69,8 +69,6 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 
 // Middleware to verify that the user is authorized to call an endpoint
 const verifyAuth = async (req, res, next) => {
-    console.log('Cookies:', req.cookies);
-    console.log('Auth token:', req.cookies[authCookieName]);
     const user = await findUser('token', req.cookies[authCookieName]);
     if (user) {
         next();
@@ -89,14 +87,12 @@ function setAuthCookie(res, authToken) {
 }
 
 // create a new event
-apiRouter.post('/events/create', verifyAuth, async (req, res) => {
-// apiRouter.post('/events/create', async (req, res) => {
+// apiRouter.post('/events/create', verifyAuth, async (req, res) => {
+apiRouter.post('/events/create', async (req, res) => {
 
     //authenticate the user
     const user = await findUser('username', req.body.username);
-    console.log("Found user");
     if (user) {
-        console.log("works");
         //validate that the request has all the parts
         const currEvent = {
             title: req.body.eventTitle,
@@ -106,23 +102,20 @@ apiRouter.post('/events/create', verifyAuth, async (req, res) => {
         }
         //save it into the events table
         events.push(currEvent);
-        console.log("Event pushed to server");
         await DB.addEvent(currEvent);
-        console.log("Event pushed to database!");
         return;
     }
 })
 
-app.get("/api/events", verifyAuth, (req, res) => {
-// app.get("/api/events", (req, res) => {
-    const { username } = req.query;
+// app.get("/api/events", verifyAuth, (req, res) => {
+app.get("/api/events", async (req, res) => {
+    const {username} = req.query;
     if (!username) {
-        return res.status(400).json({ error: "Username is required" });
+        return res.status(400).json({error: "Username is required"});
     }
     // const userEvents = events.filter(event => event.userID === username);
-    const userEvents = getUserEvents(username);
-
-    res.json({"events" : userEvents});
+    const userEvents = await DB.getUserEvents(username);
+    res.json({"events": userEvents});
 })
 
 app.get("/api", (req, res) => {
@@ -137,6 +130,7 @@ async function createUser(username, password) {
         username: username,
         password: passwordHash,
         token: uuid.v4(),
+        friendsList: [],
     };
     users.push(user);
     await DB.addUser(user);
@@ -155,6 +149,46 @@ async function findUser(field, value) {
     }
     return DB.getUser(value);
 }
+
+app.post("/api/user/addFriends", verifyAuth, async (req, res) => {
+    try {
+        const { username, friendUsername } = req.body;
+
+        // Verify both users exist
+        const user = await findUser('username', username);
+        const friendUser = await findUser('username', friendUsername);
+
+        if (!friendUser) {
+            return res.status(404).json({ error: "Friend user not found" });
+        }
+
+        const result = await DB.addFriend(username, friendUsername);
+
+        if (result) {
+            res.status(200).json({ message: "Friend added successfully" });
+        } else {
+            res.status(400).json({ message: "Unable to add friend" });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+})
+
+app.get("/api/user/friendsList", verifyAuth, async (req, res) => {
+    try {
+        const { username } = req.query;
+        if (!username) {
+            return res.status(400).json({ error: "Username is required" });
+        }
+
+        const friendsList = await DB.getUserFriends(username);
+        console.log(friendsList);
+        res.json({ friendsList });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+})
+
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);

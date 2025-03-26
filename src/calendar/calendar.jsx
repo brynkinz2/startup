@@ -4,10 +4,8 @@ import './calendar.css';
 
 export function Calendar({userName}) {
     const [friendUser, setFriend] = React.useState(localStorage.getItem(userName) || '');         // Friend name
-    const [friendsList, setFriendsList] = React.useState(() => {
-        const savedFriends = localStorage.getItem('listOfFriends');
-        return savedFriends ? JSON.parse(savedFriends) : [];  // Parse the saved friends list from localStorage or initialize as empty array
-    });
+    const [friendsList, setFriendsList] = React.useState([]);
+    const [displayError, setDisplayError] = React.useState(null);
     const [isModalOpen, setIsModalOpen] = React.useState(false); // State to track if the modal is open
     const [eventDetails, setEventDetails] = React.useState({
         title: '',
@@ -15,11 +13,7 @@ export function Calendar({userName}) {
         date: '',
         place: ''
     }); // Store event details
-    const [events, setEvents] = React.useState(() => {
-        // Load events from localStorage if available
-        const savedEvents = localStorage.getItem('events');
-        return savedEvents ? JSON.parse(savedEvents) : [];
-    });
+    const [events, setEvents] = React.useState([]);
     const [msg, setMsg] = React.useState('Friends events will also appear here.');
 
     React.useEffect(() => {
@@ -29,6 +23,19 @@ export function Calendar({userName}) {
                 setEvents(data.events);
             });
     }, []);
+
+    React.useEffect(() => {
+        fetch(`/api/user/friendsList?username=${userName}`)
+            .then((response) => response.json())
+            .then((data) => {
+                // Ensure friendsList is an array, defaulting to empty array if undefined
+                setFriendsList(data.friendsList || []);
+            })
+            .catch((error) => {
+                console.error("Error fetching friends list:", error);
+                setFriendsList([]); // Set to empty array in case of error
+            });
+    }, [userName]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -109,28 +116,74 @@ export function Calendar({userName}) {
     }
     function addFriend() {
         if (friendUser.trim() !== '') {  // Ensure the input is not empty
+            addToFriendsList();
             setFriendsList(prevList => [...prevList, friendUser]); // Add the new friend to the list
             setFriend(''); // Clear the input field after adding
             localStorage.setItem('listOfFriends', friendsList);
         }
     }
 
-    React.useEffect(() => {
-        const eventInterval = setInterval(() => {
-            // Create a new mock event
-            const newEvent = {
-                title: `Mock Event ${Math.floor(Math.random() * 1000)}`,
-                time: `${Math.floor(Math.random() * 24)}:${Math.floor(Math.random() * 60)}`,
-                date: new Date().toLocaleDateString(),
-                place: `${Math.floor(Math.random() * 100)} N ${Math.floor(Math.random() * 100)} E`,
-            };
+    async function addToFriendsList() {
+        if (friendUser.trim() !== '') {  // Ensure the input is not empty
+            addToFriendsList();
+            setFriendsList(prevList => {
+                // Ensure prevList is an array and prevent duplicates
+                const updatedList = prevList ?
+                    [...new Set([...prevList, friendUser])] :
+                    [friendUser];
 
-            // Add the new event to the events state
-            setEvents((prevEvents) => [...prevEvents, newEvent]);
-        }, 5000); // every 5 seconds;
-        return () => clearInterval(eventInterval);
+                localStorage.setItem('listOfFriends', JSON.stringify(updatedList));
+                return updatedList;
+            });
+            setFriend(''); // Clear the input field after adding
+        }
+    }
 
-    })
+    async function addToFriendsList() {
+        try {
+            const response = await fetch('/api/user/addFriends', {
+                method: 'post',
+                body: JSON.stringify({
+                    username: userName,
+                    friendUsername: friendUser,
+                }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+            });
+
+            const result = await response.json();
+
+            if (response.status === 404) {
+                localStorage.setItem('userName', userName);
+                props.onLogin(userName);
+            } else if (response.status === 200) {
+                setDisplayError("Friend successfully added");
+            } else {
+                setDisplayError(`⚠ Error: ${result.msg || 'Failed to add friend'}`);
+            }
+        } catch (error) {
+            console.error("Error adding friend:", error);
+            setDisplayError("An error occurred while adding friend");
+        }
+    }
+
+    // React.useEffect(() => {
+    //     const eventInterval = setInterval(() => {
+    //         // Create a new mock event
+    //         const newEvent = {
+    //             title: `Mock Event ${Math.floor(Math.random() * 1000)}`,
+    //             time: `${Math.floor(Math.random() * 24)}:${Math.floor(Math.random() * 60)}`,
+    //             date: new Date().toLocaleDateString(),
+    //             place: `${Math.floor(Math.random() * 100)} N ${Math.floor(Math.random() * 100)} E`,
+    //         };
+    //
+    //         // Add the new event to the events state
+    //         setEvents((prevEvents) => [...prevEvents, newEvent]);
+    //     }, 5000); // every 5 seconds;
+    //     return () => clearInterval(eventInterval);
+    //
+    // })
 
     return (
         <main>
