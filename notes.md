@@ -72,23 +72,23 @@ Need to know what elements are present in the data it is sending so that you can
 
 
 ## WebSocket
-Example:
-          constructor() {
-                  let port = window.location.port;
-                  const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-                  this.socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
-                  this.socket.onopen = (event) =\> {
-                      this.receiveEvent(new EventMessage('ChoreChum', WebUse.System, { msg: 'connected' }));
-                  };
-                  this.socket.onclose = (event) =\> {
-                      this.receiveEvent(new EventMessage('ChoreChum', WebUse.System, { msg: 'disconnected' }));
-                  };
-                  this.socket.onmessage = async (msg) =\> {
-                      try {
-                          const event = JSON.parse(await msg.data.text());
-                          this.receiveEvent(event);
-                      } catch {}
-                  };
-              }
+Example:  
+          constructor() {  
+                  let port = window.location.port;  
+                  const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';  
+                  this.socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);  
+                  this.socket.onopen = (event) =\> {  
+                      this.receiveEvent(new EventMessage('ChoreChum', WebUse.System, { msg: 'connected' }));  
+                  };  
+                  this.socket.onclose = (event) =\> {  
+                      this.receiveEvent(new EventMessage('ChoreChum', WebUse.System, { msg: 'disconnected' }));  
+                  };  
+                  this.socket.onmessage = async (msg) =\> {  
+                      try {  
+                          const event = JSON.parse(await msg.data.text());  
+                          this.receiveEvent(event);  
+                      } catch {}  
+                  };  
+              }  
 
     
